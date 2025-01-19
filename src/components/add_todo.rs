@@ -10,7 +10,7 @@ pub fn AddTodo() -> Element {
 
   rsx!(
     div { class: "flex justify-center w-full my-2",
-      form { class: "w-1/2",
+      div { class: "w-1/2",
         input {
           class: "w-3/4 p-1 border-2 border-slate-100 border-solid rounded",
           r#type: "text",
@@ -19,7 +19,8 @@ pub fn AddTodo() -> Element {
         }
         button {
           class: "text-slate-50 bg-sky-500 p-1 rounded w-1/4 hover:bg-sky-600",
-          onclick: move |_| {
+          onclick: move |e| {
+              e.stop_propagation();
               let mut todo_list = (*todo_list_signal.read()).clone();
               let todo = ToDo {
                   id: if todo_list.list.len() == 0 {
@@ -34,7 +35,7 @@ pub fn AddTodo() -> Element {
               todo_list_signal.set(todo_list);
               todo_content.set(String::new());
           },
-          disabled: if todo_content.to_string().trim() == "" { true } else { false },
+          // disabled: if todo_content.to_string().trim() == "" { true } else { false },
           "Add"
         }
       }
