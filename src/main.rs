@@ -41,6 +41,7 @@ fn App() -> Element {
     };
     use_context_provider(|| Signal::new(todo_list));
     rsx!(
+        document::Stylesheet { href: asset!("/assets/tailwind.css") }
         Title {}
         Router::<Route> {}
     )

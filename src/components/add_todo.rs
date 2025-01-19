@@ -35,7 +35,7 @@ pub fn AddTodo() -> Element {
               todo_list_signal.set(todo_list);
               todo_content.set(String::new());
           },
-          // disabled: if todo_content.to_string().trim() == "" { true } else { false },
+          disabled: if todo_content.to_string().trim() == "" { true } else { false },
           "Add"
         }
       }
